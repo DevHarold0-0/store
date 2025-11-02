@@ -11,7 +11,21 @@ class Product < ApplicationRecord
     inventory_count_previously_was.zero? && inventory_count > 0
   end
 
-  
+  def inventory_count
+    if has_attribute?(:inventory_count)
+      self[:inventory_count].to_i
+    elsif has_attribute?(:inventory)
+      self[:inventory].to_i
+    elsif has_attribute?(:stock)
+      self[:stock].to_i
+    else
+      0
+    end
+  end
+
+  def inventory_count?
+    inventory_count.to_i > 0
+  end
 
   def notify_subscribers
     subscribers.each do |subscriber|

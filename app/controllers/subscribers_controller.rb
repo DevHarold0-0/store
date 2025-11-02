@@ -1,5 +1,5 @@
 class SubscribersController < ApplicationController
-  allow_unathenticated_access
+  allow_unauthenticated_access
   before_action :set_product
 
   def create
